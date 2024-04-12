@@ -1,0 +1,66 @@
+﻿@model IEnumerable<WebApplicationLoan.Models.Loan>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrincipalAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NoOfYears)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InterestRate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InterestAmount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrincipalAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoOfYears)
+            </td>
+            <td>
+                @(item.InterestRate * 100) %
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InterestAmount)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.LoanId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.LoanId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.LoanId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
